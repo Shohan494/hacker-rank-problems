@@ -30,23 +30,29 @@ function readLine() {
  */
 
 function diagonalDifference(arr) {
+    let lToright = 0
+    let rToleft = 0
+    
     for(let i = 0; i < arr.length; i++)
     {
         for(let j = 0; j < arr.length; j++)
         {
-            console.log(arr[i][j])
+            // logic is left to right matrix position i, j is the same
+            if(i == j)
+            {
+                lToright += arr[i][j]
+            }
+
+            // logic is right to left matrix position i + j is always (matrix.length - 1)
+            if (i + j + 1 == arr.length)
+            {
+
+                rToleft += arr[i][j]
+            }
         }
     }
     
-    // Write your code here
-    let lToright = arr[0][0] + arr[1][1] + arr[2][2]
-    let rToleft = arr[0][2] + arr[1][1] + arr[2][0]
-    
     let result = lToright - rToleft
-    // with abs
-    // Math.abs(lToright - rToleft);
-    //console.log(lToright - rToleft)
-    
     if (result < 0) {
         return -result;
     }
@@ -54,6 +60,7 @@ function diagonalDifference(arr) {
     return result;
 
 }
+
 
 function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
